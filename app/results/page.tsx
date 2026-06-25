@@ -19,6 +19,7 @@ import { useAnalysisStore } from "@/lib/store/useAnalysisStore";
 import type { CoreAssetCategory } from "@/lib/types";
 
 export default function ResultsPage() {
+  const clientName = useAnalysisStore((state) => state.clientName);
   const age = useAnalysisStore((state) => state.age);
   const totalAssets = useAnalysisStore((state) => state.totalAssets);
   const selectedAssets = useAnalysisStore((state) => state.selectedAssets);
@@ -32,6 +33,7 @@ export default function ResultsPage() {
   );
 
   const profile = {
+    clientName,
     age,
     totalAssets,
     selectedAssets,
