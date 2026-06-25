@@ -1,0 +1,26 @@
+{
+  "name": "Y&Y AI Wealth Doctor",
+  "short_name": "Y&Y Wealth",
+  "description": "AI 資產配置與財務健康診斷平台",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1628",
+  "theme_color": "#f5b942",
+  "categories": ["finance", "business", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

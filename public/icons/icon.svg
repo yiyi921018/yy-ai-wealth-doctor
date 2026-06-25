@@ -1,0 +1,14 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="116" fill="#0A1628"/>
+  <circle cx="256" cy="256" r="154" fill="url(#sun)"/>
+  <circle cx="256" cy="256" r="112" fill="white" fill-opacity="0.88"/>
+  <text x="256" y="244" text-anchor="middle" fill="#0A1628" font-family="Arial, Helvetica, sans-serif" font-size="82" font-weight="900">Y&amp;Y</text>
+  <text x="256" y="307" text-anchor="middle" fill="#14243D" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Wealth Doctor</text>
+  <defs>
+    <linearGradient id="sun" x1="112" y1="99" x2="395" y2="416" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFD978"/>
+      <stop offset="0.52" stop-color="#F5B942"/>
+      <stop offset="1" stop-color="#D99A19"/>
+    </linearGradient>
+  </defs>
+</svg>
