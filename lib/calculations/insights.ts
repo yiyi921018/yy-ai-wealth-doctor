@@ -13,7 +13,7 @@ export function generateInsight(
     .sort((a, b) => a.difference - b.difference)[0];
 
   if (!overweight && !underweight) {
-    return "Your allocation is broadly balanced across growth, liquidity, and defense. Continue reviewing the portfolio as client goals and age profile evolve.";
+    return "目前資產配置在成長性、流動性與防禦性之間大致平衡。建議隨著客戶目標與年齡階段變化，定期檢視配置是否仍符合需求。";
   }
 
   if (financialSafety.status === "Weak") {
@@ -22,29 +22,29 @@ export function generateInsight(
 
   const pressure =
     scores.liquidity < 60
-      ? "reducing liquidity and flexibility"
+      ? "使資金流動性與調度彈性下降"
       : scores.defense < 60
-        ? "leaving the client with weaker downside protection"
-        : "creating a visible portfolio concentration";
+        ? "使下行風險防護能力偏弱"
+        : "形成較明顯的資產集中風險";
 
   const underweightLabel =
     underweight?.category === "insurance"
-      ? "financial protection allocation"
-      : underweight?.label ?? "defensive and liquid reserves";
+      ? "財務保障配置"
+      : underweight?.label ?? "防禦型與流動型資產";
 
-  return `Your asset allocation is most concentrated in ${overweight?.label ?? "growth assets"}, ${pressure}. Consider increasing ${underweightLabel} to improve overall financial stability.`;
+  return `目前資產配置最集中在${overweight?.label ?? "成長型資產"}，${pressure}。建議提高${underweightLabel}，以提升整體財務穩定度。`;
 }
 
 function recommendationLabel(gap: CategoryAllocation) {
   if (gap.category === "insurance") {
-    return "Improve financial protection allocation";
+    return "提升財務保障配置";
   }
 
   if (gap.category === "cash") {
-    return `Increase ${gap.label} reserves by ${Math.abs(gap.difference).toFixed(1)}%`;
+    return `增加${gap.label}準備金 ${Math.abs(gap.difference).toFixed(1)}%`;
   }
 
-  return `Increase ${gap.label} allocation by ${Math.abs(gap.difference).toFixed(1)}%`;
+  return `增加${gap.label}配置 ${Math.abs(gap.difference).toFixed(1)}%`;
 }
 
 export function generateRecommendations(
@@ -61,14 +61,14 @@ export function generateRecommendations(
     .filter((gap) => gap.status === "Overweight")
     .sort((a, b) => b.difference - a.difference)
     .slice(0, 1)
-    .map((gap) => `Reduce ${gap.label} exposure by ${gap.difference.toFixed(1)}%`);
+    .map((gap) => `降低${gap.label}曝險 ${gap.difference.toFixed(1)}%`);
 
   const safetyActions =
     financialSafety.status === "Weak" || financialSafety.status === "Moderate"
       ? [
-          "Strengthen risk-transfer capacity",
-          "Enhance family financial resilience",
-          "Increase protection against unexpected life events",
+          "強化風險轉移能力",
+          "提升家庭財務韌性",
+          "增加對突發人生事件的防護能力",
         ]
       : [];
 

@@ -11,6 +11,13 @@ const statusVariant: Record<FinancialSafetyAnalysis["status"], "danger" | "warni
   Excellent: "success",
 };
 
+const statusLabel: Record<FinancialSafetyAnalysis["status"], string> = {
+  Weak: "偏弱",
+  Moderate: "中等",
+  Strong: "穩健",
+  Excellent: "優秀",
+};
+
 export function FinancialSafetyCard({ analysis }: { analysis: FinancialSafetyAnalysis }) {
   return (
     <Card>
@@ -19,18 +26,18 @@ export function FinancialSafetyCard({ analysis }: { analysis: FinancialSafetyAna
           <div>
             <CardTitle className="flex items-center gap-2">
               <ShieldCheck className="size-5 text-gold-600" />
-              Financial Safety Score
+              財務安全分數
             </CardTitle>
             <CardDescription>
-              Measures protection against major life risks and unexpected financial events.
+              評估資產配置是否足以應對重大人生風險與突發財務事件。
             </CardDescription>
           </div>
-          <Badge variant={statusVariant[analysis.status]}>{analysis.status}</Badge>
+          <Badge variant={statusVariant[analysis.status]}>{statusLabel[analysis.status]}</Badge>
         </div>
       </CardHeader>
       <CardContent>
         <div className="grid gap-5 sm:grid-cols-[9rem_1fr] sm:items-center">
-          <ScoreCircle label="Safety" value={analysis.score} />
+          <ScoreCircle label="安全分數" value={analysis.score} />
           <p className="leading-7 text-muted-foreground">{analysis.explanation}</p>
         </div>
       </CardContent>

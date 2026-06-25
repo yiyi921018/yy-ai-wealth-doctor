@@ -7,7 +7,7 @@ export function AIInsightCard({ insight }: { insight: string }) {
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-white">
           <Sparkles className="size-5 text-gold-500" />
-          AI Insight
+          AI 分析洞察
         </CardTitle>
       </CardHeader>
       <CardContent>

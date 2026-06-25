@@ -19,23 +19,23 @@ export function CustomAssetFields({ assets, onAdd, onUpdate, onRemove }: CustomA
     <div className="mt-6 space-y-4 rounded-3xl border bg-white/70 p-4">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h3 className="font-semibold text-navy-900">Custom asset categories</h3>
-          <p className="text-sm text-muted-foreground">Add up to 3 advisor-defined categories.</p>
+          <h3 className="font-semibold text-navy-900">自訂資產類別</h3>
+          <p className="text-sm text-muted-foreground">最多可新增 3 個自訂資產類別。</p>
         </div>
         <Button type="button" variant="outline" onClick={onAdd} disabled={assets.length >= 3}>
           <Plus className="mr-2 size-4" />
-          Add Another
+          新增一筆
         </Button>
       </div>
 
       {assets.map((asset, index) => (
         <div key={asset.id} className="grid gap-3 rounded-2xl bg-white p-4 sm:grid-cols-[1fr_1fr_auto]">
           <div className="space-y-2">
-            <Label>Custom Asset Name {index + 1}</Label>
+            <Label>自訂資產名稱 {index + 1}</Label>
             <Input value={asset.name} onChange={(event) => onUpdate(asset.id, { name: event.target.value })} />
           </div>
           <div className="space-y-2">
-            <Label>Custom Asset Value</Label>
+            <Label>自訂資產價值</Label>
             <CurrencyInput value={asset.value} onChange={(value) => onUpdate(asset.id, { value })} />
           </div>
           <Button type="button" variant="ghost" size="icon" className="self-end" onClick={() => onRemove(asset.id)}>

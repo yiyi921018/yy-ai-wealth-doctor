@@ -12,13 +12,13 @@ export function Header() {
         <div>
           <div className="text-xl font-black tracking-tight text-navy-900">Y&amp;Y</div>
           <div className="text-xs font-medium uppercase tracking-[0.22em] text-muted-foreground">
-            AI Financial Health Diagnostic System
+            AI 財務健康診斷系統
           </div>
         </div>
       </div>
       <div className="hidden items-center gap-2 rounded-full border bg-white/80 px-4 py-2 text-sm font-medium text-navy-700 shadow-sm sm:flex">
         <Activity className="size-4 text-gold-600" />
-        Advisor Console
+        顧問控制台
       </div>
     </header>
   );

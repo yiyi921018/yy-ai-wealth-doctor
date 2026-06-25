@@ -1,18 +1,18 @@
 import type { AllocationBreakdown, AssetOption, CoreAssetCategory, WeightProfile } from "@/lib/types";
 
 export const ASSET_OPTIONS: AssetOption[] = [
-  { id: "real_estate", label: "Real Estate", shortLabel: "Real Estate" },
-  { id: "stocks", label: "Stocks", shortLabel: "Stocks" },
-  { id: "mutual_funds", label: "Mutual Funds", shortLabel: "Funds" },
-  { id: "bonds", label: "Bonds", shortLabel: "Bonds" },
-  { id: "cash", label: "Cash / Savings", shortLabel: "Cash" },
-  { id: "insurance", label: "Insurance", shortLabel: "Insurance" },
-  { id: "gold", label: "Gold", shortLabel: "Gold" },
-  { id: "cryptocurrency", label: "Cryptocurrency", shortLabel: "Crypto" },
-  { id: "business_equity", label: "Business Equity", shortLabel: "Business" },
-  { id: "retirement_assets", label: "Retirement Assets", shortLabel: "Retirement" },
-  { id: "overseas_assets", label: "Overseas Assets", shortLabel: "Overseas" },
-  { id: "other", label: "Other", shortLabel: "Other" },
+  { id: "real_estate", label: "房地產", shortLabel: "房地產" },
+  { id: "stocks", label: "股票", shortLabel: "股票" },
+  { id: "mutual_funds", label: "基金", shortLabel: "基金" },
+  { id: "bonds", label: "債券", shortLabel: "債券" },
+  { id: "cash", label: "現金 / 儲蓄", shortLabel: "現金" },
+  { id: "insurance", label: "保險", shortLabel: "保險" },
+  { id: "gold", label: "黃金", shortLabel: "黃金" },
+  { id: "cryptocurrency", label: "加密貨幣", shortLabel: "加密貨幣" },
+  { id: "business_equity", label: "企業股權", shortLabel: "企業股權" },
+  { id: "retirement_assets", label: "退休資產", shortLabel: "退休資產" },
+  { id: "overseas_assets", label: "海外資產", shortLabel: "海外資產" },
+  { id: "other", label: "其他", shortLabel: "其他" },
 ];
 
 export const CORE_ASSET_OPTIONS = ASSET_OPTIONS.filter(
@@ -42,9 +42,9 @@ export const ASSET_WEIGHTS: Record<CoreAssetCategory, WeightProfile> = {
 };
 
 export const BUCKET_LABELS = {
-  growth: "Growth",
-  liquidity: "Liquidity",
-  defense: "Defense",
+  growth: "成長",
+  liquidity: "流動",
+  defense: "防禦",
 } satisfies Record<keyof AllocationBreakdown, string>;
 
 export const CHART_COLORS = ["#f5b942", "#0a1628", "#60a5fa", "#22c55e", "#a78bfa", "#fb7185"];

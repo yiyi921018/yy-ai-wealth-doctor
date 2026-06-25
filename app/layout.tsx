@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Y&Y AI Wealth Doctor",
-  description: "AI-powered asset allocation and financial health diagnostic platform for advisors.",
+  description: "AI 資產配置與財務健康診斷平台。",
 };
 
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="zh-TW">
       <body>{children}</body>
     </html>
   );

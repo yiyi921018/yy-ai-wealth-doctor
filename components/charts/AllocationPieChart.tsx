@@ -10,9 +10,9 @@ interface AllocationPieChartProps {
 
 export function AllocationPieChart({ data }: AllocationPieChartProps) {
   const chartData = [
-    { name: "Growth", value: data.growth },
-    { name: "Liquidity", value: data.liquidity },
-    { name: "Defense", value: data.defense },
+    { name: "成長", value: data.growth },
+    { name: "流動", value: data.liquidity },
+    { name: "防禦", value: data.defense },
   ];
 
   return (

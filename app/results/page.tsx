@@ -55,8 +55,8 @@ export default function ResultsPage() {
                 <Stethoscope className="size-7" />
               </div>
               <div>
-                <h1 className="text-3xl font-black tracking-tight">Financial Health Report</h1>
-                <p className="text-white/65">AI-powered allocation diagnosis for advisor conversations.</p>
+                <h1 className="text-3xl font-black tracking-tight">財務健康報告</h1>
+                <p className="text-white/65">以 AI 協助顧問快速診斷客戶資產配置。</p>
               </div>
             </div>
             <div className="flex gap-3">
@@ -76,14 +76,14 @@ export default function ResultsPage() {
           {!hasLiveData && (
             <Card>
               <CardHeader>
-                <CardTitle>No asset data yet</CardTitle>
+                <CardTitle>尚未輸入資產資料</CardTitle>
                 <CardDescription>
-                  Please go back and enter asset values before generating the analysis.
+                  請返回上一頁輸入資產價值後，再產生分析結果。
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Button asChild variant="gold">
-                  <Link href="/asset-values">Enter Asset Values</Link>
+                  <Link href="/asset-values">輸入資產價值</Link>
                 </Button>
               </CardContent>
             </Card>
@@ -93,7 +93,7 @@ export default function ResultsPage() {
             <div className="space-y-6">
               <Card>
                 <CardHeader>
-                  <CardTitle>AI Recommended Allocation</CardTitle>
+                  <CardTitle>AI 建議配置</CardTitle>
                   <CardDescription>依年齡調整的成長、流動與防禦配置建議。</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -103,8 +103,8 @@ export default function ResultsPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Actual Allocation</CardTitle>
-                  <CardDescription>Current asset mix translated into financial behavior buckets.</CardDescription>
+                  <CardTitle>實際資產配置</CardTitle>
+                  <CardDescription>依客戶輸入的資產金額計算目前配置比例。</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <AssetAllocationPieChart profile={profile} />
@@ -113,8 +113,8 @@ export default function ResultsPage() {
 
               <Card>
                 <CardHeader>
-                  <CardTitle>Allocation Gap Analysis</CardTitle>
-                  <CardDescription>Difference between recommended and actual allocation by asset category.</CardDescription>
+                  <CardTitle>配置缺口分析</CardTitle>
+                  <CardDescription>比較建議配置與實際配置在各資產類別上的差異。</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <GapAnalysisTable rows={result.categoryGap} />

@@ -89,17 +89,17 @@ export function getFinancialSafetyAnalysis(
     score < 50 ? "Weak" : score < 70 ? "Moderate" : score < 85 ? "Strong" : "Excellent";
 
   let explanation =
-    "Your portfolio has a reasonable mix of liquid reserves, defensive assets, and long-term protection capacity.";
+    "目前資產配置具備一定的流動準備、防禦型資產與長期保障能力，整體財務安全性相對穩定。";
 
   if (insurance <= 0) {
     explanation =
-      "Your portfolio currently lacks dedicated risk-transfer assets. Unexpected health events, income interruption, or family responsibilities may require the liquidation of investment assets, reducing long-term financial stability.";
+      "目前投資組合缺乏專門用於風險轉移的資產。若發生健康事件、收入中斷或家庭責任增加，可能需要出售投資資產來應對，進而降低長期財務穩定性。";
   } else if (realEstate > 45 || stocks > 50 || crypto > 10 || business > 30) {
     explanation =
-      "Financial safety is pressured by portfolio concentration. A major life event may force the client to liquidate volatile or illiquid assets at an unfavorable time.";
+      "財務安全性受到資產集中度影響。若遇到重大人生事件，客戶可能被迫在不利時機出售波動較高或流動性較低的資產。";
   } else if (cash < 10 && bonds < 10) {
     explanation =
-      "The portfolio has limited immediately available reserves. Strengthening liquid and defensive allocations may improve resilience during unexpected events.";
+      "目前可立即動用的準備金相對有限。提高流動型與防禦型資產配置，有助於提升面對突發事件時的韌性。";
   }
 
   return {
