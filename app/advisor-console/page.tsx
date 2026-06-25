@@ -232,6 +232,14 @@ export default function AdvisorConsolePage() {
                             <span className="font-semibold text-navy-900">{formatCurrency(asset.value)}</span>
                           </div>
                         ))}
+                        {record.hasDebt && (
+                          <div className="flex justify-between gap-4 rounded-xl bg-rose-50 px-3 py-2 text-sm">
+                            <span className="text-rose-700">負債（每年需要繳多少）</span>
+                            <span className="font-semibold text-rose-700">
+                              {formatCurrency(record.annualDebtPayment)}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </CardContent>
