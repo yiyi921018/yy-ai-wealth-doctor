@@ -4,6 +4,7 @@ import { create } from "zustand";
 import type { AssetCategory, ClientProfile, CoreAssetCategory, CustomAsset } from "@/lib/types";
 
 interface AnalysisStore extends ClientProfile {
+  setClientName: (clientName: string) => void;
   setBasicInfo: (age: number, totalAssets: number) => void;
   toggleAsset: (asset: AssetCategory) => void;
   setAssetValue: (asset: CoreAssetCategory, value: number) => void;
@@ -14,6 +15,7 @@ interface AnalysisStore extends ClientProfile {
 }
 
 const initialState: ClientProfile = {
+  clientName: "",
   age: 0,
   totalAssets: 0,
   selectedAssets: [],
@@ -23,6 +25,7 @@ const initialState: ClientProfile = {
 
 export const useAnalysisStore = create<AnalysisStore>((set) => ({
   ...initialState,
+  setClientName: (clientName) => set({ clientName }),
   setBasicInfo: (age, totalAssets) => set({ age, totalAssets }),
   toggleAsset: (asset) =>
     set((state) => {

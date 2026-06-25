@@ -1,6 +1,7 @@
 import type { ClientProfile } from "@/lib/types";
 
 export const mockProfile: ClientProfile = {
+  clientName: "範例客戶",
   age: 42,
   totalAssets: 5_000_000,
   selectedAssets: ["real_estate", "stocks", "insurance", "cash", "bonds"],

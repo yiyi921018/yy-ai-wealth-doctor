@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -14,10 +15,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Label } from "@/components/ui/label";
 import { CORE_ASSET_OPTIONS } from "@/lib/constants";
 import { sumAssetValues } from "@/lib/calculations/allocation";
+import { saveClientRecord } from "@/lib/store/clientRecords";
 import { useAnalysisStore } from "@/lib/store/useAnalysisStore";
 
 export default function AssetValuesPage() {
   const router = useRouter();
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
+  const clientName = useAnalysisStore((state) => state.clientName);
+  const age = useAnalysisStore((state) => state.age);
   const totalAssets = useAnalysisStore((state) => state.totalAssets);
   const selectedAssets = useAnalysisStore((state) => state.selectedAssets);
   const assetValues = useAnalysisStore((state) => state.assetValues);
@@ -30,6 +36,27 @@ export default function AssetValuesPage() {
     () => sumAssetValues(assetValues, customAssets),
     [assetValues, customAssets],
   );
+
+  const handleGenerateAnalysis = async () => {
+    setIsSaving(true);
+    setSaveError("");
+
+    try {
+      await saveClientRecord({
+        clientName,
+        age,
+        totalAssets,
+        selectedAssets,
+        customAssets,
+        assetValues,
+      });
+      router.push("/results");
+    } catch (error) {
+      setSaveError(error instanceof Error ? error.message : "客戶資料未成功儲存，請稍後再試。");
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   return (
     <AppShell>
@@ -80,12 +107,17 @@ export default function AssetValuesPage() {
                   variant="gold"
                   size="lg"
                   className="sm:min-w-48"
-                  disabled={!runningTotal}
-                  onClick={() => router.push("/results")}
+                  disabled={!runningTotal || isSaving}
+                  onClick={handleGenerateAnalysis}
                 >
-                  產生分析
+                  {isSaving ? "儲存中..." : "產生分析"}
                 </Button>
               </div>
+              {saveError && (
+                <div className="rounded-2xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">
+                  {saveError}
+                </div>
+              )}
             </CardContent>
           </Card>
           <StepProgress currentStep={4} />

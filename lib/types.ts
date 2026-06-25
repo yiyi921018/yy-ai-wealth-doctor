@@ -31,11 +31,17 @@ export interface CustomAsset {
 }
 
 export interface ClientProfile {
+  clientName: string;
   age: number;
   totalAssets: number;
   selectedAssets: AssetCategory[];
   customAssets: CustomAsset[];
   assetValues: Partial<Record<CoreAssetCategory, number>>;
+}
+
+export interface SavedClientRecord extends ClientProfile {
+  id: string;
+  createdAt: string;
 }
 
 export interface AllocationBreakdown {

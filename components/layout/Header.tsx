@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Activity, SunMedium } from "lucide-react";
 
 export function Header() {
@@ -16,10 +17,13 @@ export function Header() {
           </div>
         </div>
       </div>
-      <div className="hidden items-center gap-2 rounded-full border bg-white/80 px-4 py-2 text-sm font-medium text-navy-700 shadow-sm sm:flex">
+      <Link
+        href="/advisor-console"
+        className="hidden items-center gap-2 rounded-full border bg-white/80 px-4 py-2 text-sm font-medium text-navy-700 shadow-sm transition hover:border-gold-500 hover:bg-gold-100/60 sm:flex"
+      >
         <Activity className="size-4 text-gold-600" />
         顧問控制台
-      </div>
+      </Link>
     </header>
   );
 }

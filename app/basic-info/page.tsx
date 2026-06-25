@@ -15,8 +15,10 @@ import { useAnalysisStore } from "@/lib/store/useAnalysisStore";
 
 export default function BasicInfoPage() {
   const router = useRouter();
+  const clientName = useAnalysisStore((state) => state.clientName);
   const age = useAnalysisStore((state) => state.age);
   const totalAssets = useAnalysisStore((state) => state.totalAssets);
+  const setClientName = useAnalysisStore((state) => state.setClientName);
   const setBasicInfo = useAnalysisStore((state) => state.setBasicInfo);
 
   return (
@@ -29,6 +31,15 @@ export default function BasicInfoPage() {
               <CardDescription>請輸入客戶的年齡與申報的總資產。</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="client-name">客戶姓名</Label>
+                <Input
+                  id="client-name"
+                  value={clientName}
+                  placeholder="請輸入客戶姓名"
+                  onChange={(event) => setClientName(event.target.value)}
+                />
+              </div>
               <div className="space-y-2">
                 <Label htmlFor="age">年齡</Label>
                 <Input
@@ -56,7 +67,7 @@ export default function BasicInfoPage() {
                   variant="gold"
                   className="sm:min-w-48"
                   size="lg"
-                  disabled={!age || !totalAssets}
+                  disabled={!clientName.trim() || !age || !totalAssets}
                   onClick={() => router.push("/asset-selection")}
                 >
                   下一篇
