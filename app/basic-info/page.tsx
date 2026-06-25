@@ -18,8 +18,11 @@ export default function BasicInfoPage() {
   const clientName = useAnalysisStore((state) => state.clientName);
   const age = useAnalysisStore((state) => state.age);
   const totalAssets = useAnalysisStore((state) => state.totalAssets);
+  const hasDebt = useAnalysisStore((state) => state.hasDebt);
+  const totalDebt = useAnalysisStore((state) => state.totalDebt);
   const setClientName = useAnalysisStore((state) => state.setClientName);
   const setBasicInfo = useAnalysisStore((state) => state.setBasicInfo);
+  const setDebtInfo = useAnalysisStore((state) => state.setDebtInfo);
 
   return (
     <AppShell>
@@ -56,6 +59,39 @@ export default function BasicInfoPage() {
                 <Label>總資產（新台幣）</Label>
                 <CurrencyInput value={totalAssets} onChange={(value) => setBasicInfo(age, value)} />
               </div>
+              <div className="space-y-3 rounded-3xl border bg-white/70 p-4">
+                <Label>有無負債</Label>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <button
+                    type="button"
+                    onClick={() => setDebtInfo(true, totalDebt)}
+                    className={`rounded-2xl border px-4 py-3 text-left font-semibold transition ${
+                      hasDebt ? "border-gold-500 bg-gold-100 text-navy-900" : "bg-white text-muted-foreground"
+                    }`}
+                  >
+                    有負債
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDebtInfo(false, 0)}
+                    className={`rounded-2xl border px-4 py-3 text-left font-semibold transition ${
+                      !hasDebt ? "border-gold-500 bg-gold-100 text-navy-900" : "bg-white text-muted-foreground"
+                    }`}
+                  >
+                    無負債
+                  </button>
+                </div>
+                {hasDebt && (
+                  <div className="space-y-2">
+                    <Label>負債（信貸 車貸 房貸 學貸總金額）</Label>
+                    <CurrencyInput
+                      value={totalDebt}
+                      placeholder="請輸入負債總金額"
+                      onChange={(value) => setDebtInfo(true, value)}
+                    />
+                  </div>
+                )}
+              </div>
               <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
                 <Button asChild variant="outline" size="lg">
                   <Link href="/">
@@ -67,7 +103,7 @@ export default function BasicInfoPage() {
                   variant="gold"
                   className="sm:min-w-48"
                   size="lg"
-                  disabled={!clientName.trim() || !age || !totalAssets}
+                  disabled={!clientName.trim() || !age || !totalAssets || (hasDebt && !totalDebt)}
                   onClick={() => router.push("/asset-selection")}
                 >
                   下一篇

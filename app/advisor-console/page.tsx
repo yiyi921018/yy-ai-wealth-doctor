@@ -193,10 +193,28 @@ export default function AdvisorConsolePage() {
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="grid gap-3 text-sm sm:grid-cols-2">
+                    <div className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
                       <div className="rounded-2xl bg-muted/70 p-4">
                         <div className="text-muted-foreground">年齡</div>
                         <div className="mt-1 text-lg font-bold text-navy-900">{record.age} 歲</div>
+                      </div>
+                      <div className="rounded-2xl bg-muted/70 p-4">
+                        <div className="text-muted-foreground">負債狀態</div>
+                        <div className="mt-1 text-lg font-bold text-navy-900">
+                          {record.hasDebt ? "有負債" : "無負債"}
+                        </div>
+                      </div>
+                      <div className="rounded-2xl bg-muted/70 p-4">
+                        <div className="text-muted-foreground">負債總金額</div>
+                        <div className="mt-1 text-lg font-bold text-navy-900">
+                          {record.hasDebt ? formatCurrency(record.totalDebt) : "無"}
+                        </div>
+                      </div>
+                      <div className="rounded-2xl bg-muted/70 p-4">
+                        <div className="text-muted-foreground">每年負債繳款</div>
+                        <div className="mt-1 text-lg font-bold text-navy-900">
+                          {record.hasDebt ? formatCurrency(record.annualDebtPayment) : "無"}
+                        </div>
                       </div>
                       <div className="rounded-2xl bg-muted/70 p-4">
                         <div className="text-muted-foreground">選擇資產數</div>

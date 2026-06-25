@@ -22,6 +22,9 @@ export default function ResultsPage() {
   const clientName = useAnalysisStore((state) => state.clientName);
   const age = useAnalysisStore((state) => state.age);
   const totalAssets = useAnalysisStore((state) => state.totalAssets);
+  const hasDebt = useAnalysisStore((state) => state.hasDebt);
+  const totalDebt = useAnalysisStore((state) => state.totalDebt);
+  const annualDebtPayment = useAnalysisStore((state) => state.annualDebtPayment);
   const selectedAssets = useAnalysisStore((state) => state.selectedAssets);
   const customAssets = useAnalysisStore((state) => state.customAssets);
   const assetValues = useAnalysisStore((state) => state.assetValues);
@@ -36,6 +39,9 @@ export default function ResultsPage() {
     clientName,
     age,
     totalAssets,
+    hasDebt,
+    totalDebt,
+    annualDebtPayment,
     selectedAssets,
     customAssets,
     assetValues: selectedAssetValues,

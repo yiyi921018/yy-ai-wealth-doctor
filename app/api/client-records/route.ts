@@ -15,6 +15,9 @@ function toRecord(row: {
   client_name: string;
   age: number;
   total_assets: number;
+  has_debt?: boolean | null;
+  total_debt?: number | null;
+  annual_debt_payment?: number | null;
   selected_assets: ClientProfile["selectedAssets"];
   custom_assets: ClientProfile["customAssets"];
   asset_values: ClientProfile["assetValues"];
@@ -25,6 +28,9 @@ function toRecord(row: {
     clientName: row.client_name,
     age: row.age,
     totalAssets: Number(row.total_assets),
+    hasDebt: Boolean(row.has_debt),
+    totalDebt: Number(row.total_debt ?? 0),
+    annualDebtPayment: Number(row.annual_debt_payment ?? 0),
     selectedAssets: row.selected_assets,
     customAssets: row.custom_assets,
     assetValues: row.asset_values,
@@ -47,6 +53,9 @@ export async function POST(request: NextRequest) {
         client_name: profile.clientName.trim(),
         age: profile.age,
         total_assets: profile.totalAssets,
+        has_debt: profile.hasDebt,
+        total_debt: profile.totalDebt,
+        annual_debt_payment: profile.annualDebtPayment,
         selected_assets: profile.selectedAssets,
         custom_assets: profile.customAssets,
         asset_values: profile.assetValues,

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -8,7 +7,6 @@ import { AppShell } from "@/components/layout/AppShell";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { StepProgress } from "@/components/layout/StepProgress";
 import { AssetCheckboxGroup } from "@/components/forms/AssetCheckboxGroup";
-import { CustomAssetFields } from "@/components/forms/CustomAssetFields";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAnalysisStore } from "@/lib/store/useAnalysisStore";
@@ -16,18 +14,7 @@ import { useAnalysisStore } from "@/lib/store/useAnalysisStore";
 export default function AssetSelectionPage() {
   const router = useRouter();
   const selectedAssets = useAnalysisStore((state) => state.selectedAssets);
-  const customAssets = useAnalysisStore((state) => state.customAssets);
   const toggleAsset = useAnalysisStore((state) => state.toggleAsset);
-  const addCustomAsset = useAnalysisStore((state) => state.addCustomAsset);
-  const updateCustomAsset = useAnalysisStore((state) => state.updateCustomAsset);
-  const removeCustomAsset = useAnalysisStore((state) => state.removeCustomAsset);
-  const showCustomAssets = selectedAssets.includes("other");
-
-  useEffect(() => {
-    if (showCustomAssets && customAssets.length === 0) {
-      addCustomAsset();
-    }
-  }, [addCustomAsset, customAssets.length, showCustomAssets]);
 
   return (
     <AppShell>
@@ -40,14 +27,6 @@ export default function AssetSelectionPage() {
             </CardHeader>
             <CardContent>
               <AssetCheckboxGroup selectedAssets={selectedAssets} onToggle={toggleAsset} />
-              {showCustomAssets && (
-                <CustomAssetFields
-                  assets={customAssets}
-                  onAdd={addCustomAsset}
-                  onUpdate={updateCustomAsset}
-                  onRemove={removeCustomAsset}
-                />
-              )}
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-between">
                 <Button asChild variant="outline" size="lg">
                   <Link href="/basic-info">

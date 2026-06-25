@@ -4,6 +4,9 @@ export const mockProfile: ClientProfile = {
   clientName: "範例客戶",
   age: 42,
   totalAssets: 5_000_000,
+  hasDebt: false,
+  totalDebt: 0,
+  annualDebtPayment: 0,
   selectedAssets: ["real_estate", "stocks", "insurance", "cash", "bonds"],
   customAssets: [],
   assetValues: {

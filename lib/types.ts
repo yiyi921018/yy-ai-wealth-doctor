@@ -9,10 +9,9 @@ export type AssetCategory =
   | "cryptocurrency"
   | "business_equity"
   | "retirement_assets"
-  | "overseas_assets"
-  | "other";
+  | "overseas_assets";
 
-export type CoreAssetCategory = Exclude<AssetCategory, "other">;
+export type CoreAssetCategory = AssetCategory;
 
 export type AllocationBucket = "growth" | "liquidity" | "defense";
 
@@ -34,6 +33,9 @@ export interface ClientProfile {
   clientName: string;
   age: number;
   totalAssets: number;
+  hasDebt: boolean;
+  totalDebt: number;
+  annualDebtPayment: number;
   selectedAssets: AssetCategory[];
   customAssets: CustomAsset[];
   assetValues: Partial<Record<CoreAssetCategory, number>>;

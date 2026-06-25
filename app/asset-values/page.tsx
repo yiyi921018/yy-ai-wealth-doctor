@@ -25,11 +25,14 @@ export default function AssetValuesPage() {
   const clientName = useAnalysisStore((state) => state.clientName);
   const age = useAnalysisStore((state) => state.age);
   const totalAssets = useAnalysisStore((state) => state.totalAssets);
+  const hasDebt = useAnalysisStore((state) => state.hasDebt);
+  const totalDebt = useAnalysisStore((state) => state.totalDebt);
+  const annualDebtPayment = useAnalysisStore((state) => state.annualDebtPayment);
   const selectedAssets = useAnalysisStore((state) => state.selectedAssets);
   const assetValues = useAnalysisStore((state) => state.assetValues);
   const customAssets = useAnalysisStore((state) => state.customAssets);
   const setAssetValue = useAnalysisStore((state) => state.setAssetValue);
-  const updateCustomAsset = useAnalysisStore((state) => state.updateCustomAsset);
+  const setAnnualDebtPayment = useAnalysisStore((state) => state.setAnnualDebtPayment);
 
   const selectedCoreAssets = CORE_ASSET_OPTIONS.filter((asset) => selectedAssets.includes(asset.id));
   const runningTotal = useMemo(
@@ -46,6 +49,9 @@ export default function AssetValuesPage() {
         clientName,
         age,
         totalAssets,
+        hasDebt,
+        totalDebt,
+        annualDebtPayment,
         selectedAssets,
         customAssets,
         assetValues,
@@ -82,17 +88,14 @@ export default function AssetValuesPage() {
                 ))}
               </div>
 
-              {customAssets.length > 0 && (
-                <div className="grid gap-4 sm:grid-cols-2">
-                  {customAssets.map((asset) => (
-                    <div key={asset.id} className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
-                      <Label>{asset.name || "Custom Asset"}</Label>
-                      <CurrencyInput
-                        value={asset.value}
-                        onChange={(value) => updateCustomAsset(asset.id, { value })}
-                      />
-                    </div>
-                  ))}
+              {hasDebt && (
+                <div className="space-y-2 rounded-2xl border bg-white p-4 shadow-sm">
+                  <Label>負債（每年需要繳多少）</Label>
+                  <CurrencyInput
+                    value={annualDebtPayment}
+                    placeholder="請輸入每年需繳負債金額"
+                    onChange={setAnnualDebtPayment}
+                  />
                 </div>
               )}
 
@@ -107,7 +110,7 @@ export default function AssetValuesPage() {
                   variant="gold"
                   size="lg"
                   className="sm:min-w-48"
-                  disabled={!runningTotal || isSaving}
+                  disabled={!runningTotal || (hasDebt && !annualDebtPayment) || isSaving}
                   onClick={handleGenerateAnalysis}
                 >
                   {isSaving ? "儲存中..." : "產生分析"}

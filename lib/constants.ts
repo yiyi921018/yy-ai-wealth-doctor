@@ -12,11 +12,10 @@ export const ASSET_OPTIONS: AssetOption[] = [
   { id: "business_equity", label: "企業股權", shortLabel: "企業股權" },
   { id: "retirement_assets", label: "退休資產", shortLabel: "退休資產" },
   { id: "overseas_assets", label: "海外資產", shortLabel: "海外資產" },
-  { id: "other", label: "其他", shortLabel: "其他" },
 ];
 
 export const CORE_ASSET_OPTIONS = ASSET_OPTIONS.filter(
-  (asset): asset is AssetOption & { id: CoreAssetCategory } => asset.id !== "other",
+  (asset): asset is AssetOption & { id: CoreAssetCategory } => true,
 );
 
 export const AGE_GROUP_TARGETS: Array<{ min: number; max: number } & AllocationBreakdown> = [

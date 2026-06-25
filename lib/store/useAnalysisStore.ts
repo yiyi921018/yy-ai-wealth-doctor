@@ -6,6 +6,8 @@ import type { AssetCategory, ClientProfile, CoreAssetCategory, CustomAsset } fro
 interface AnalysisStore extends ClientProfile {
   setClientName: (clientName: string) => void;
   setBasicInfo: (age: number, totalAssets: number) => void;
+  setDebtInfo: (hasDebt: boolean, totalDebt: number) => void;
+  setAnnualDebtPayment: (annualDebtPayment: number) => void;
   toggleAsset: (asset: AssetCategory) => void;
   setAssetValue: (asset: CoreAssetCategory, value: number) => void;
   addCustomAsset: () => void;
@@ -18,6 +20,9 @@ const initialState: ClientProfile = {
   clientName: "",
   age: 0,
   totalAssets: 0,
+  hasDebt: false,
+  totalDebt: 0,
+  annualDebtPayment: 0,
   selectedAssets: [],
   customAssets: [],
   assetValues: {},
@@ -27,6 +32,13 @@ export const useAnalysisStore = create<AnalysisStore>((set) => ({
   ...initialState,
   setClientName: (clientName) => set({ clientName }),
   setBasicInfo: (age, totalAssets) => set({ age, totalAssets }),
+  setDebtInfo: (hasDebt, totalDebt) =>
+    set((state) => ({
+      hasDebt,
+      totalDebt: hasDebt ? totalDebt : 0,
+      annualDebtPayment: hasDebt ? state.annualDebtPayment : 0,
+    })),
+  setAnnualDebtPayment: (annualDebtPayment) => set({ annualDebtPayment }),
   toggleAsset: (asset) =>
     set((state) => {
       const isSelected = state.selectedAssets.includes(asset);
@@ -35,14 +47,14 @@ export const useAnalysisStore = create<AnalysisStore>((set) => ({
         : [...state.selectedAssets, asset];
       const assetValues = { ...state.assetValues };
 
-      if (isSelected && asset !== "other") {
+      if (isSelected) {
         delete assetValues[asset as CoreAssetCategory];
       }
 
       return {
         selectedAssets: selected,
         assetValues,
-        customAssets: selected.includes("other") ? state.customAssets : [],
+        customAssets: state.customAssets,
       };
     }),
   setAssetValue: (asset, value) =>
